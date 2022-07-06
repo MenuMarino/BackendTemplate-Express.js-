@@ -6,7 +6,7 @@ const logger = Logger.create('backend:logout');
 
 class LogOut {
   readonly method = Method.GET;
-  readonly route = '/api/logout';
+  readonly route = '/logout';
   readonly middlewares = [auth];
 
   async on(): Promise<any> {
