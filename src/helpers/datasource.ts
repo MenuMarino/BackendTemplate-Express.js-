@@ -14,10 +14,6 @@ export class Datasource {
     const uri = process.env.URI!;
 
     const connectOptions: mongoose.ConnectOptions = {
-      useFindAndModify: false,
-      useCreateIndex: true,
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
       bufferCommands: false,
       keepAlive: true,
       keepAliveInitialDelay: 5000,
@@ -25,7 +21,9 @@ export class Datasource {
     };
 
     logger.info('connecting/mongoose: %s', dbname);
-    this.connection = mongoose.createConnection(uri, connectOptions);
+    this.connection = mongoose.createConnection(
+      uri + dbname + '?retryWrites=true&w=majority&ssl=true',
+      connectOptions);
     logger.info('connected/mongoose: %s', dbname);
   }
 
