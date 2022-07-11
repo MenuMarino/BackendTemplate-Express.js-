@@ -29,7 +29,9 @@ const auth = async (req: Request, res: Response, next: NextFunction) => {
     if (!tokenDB) {
       throw new Error('You are not authenticated');
     }
-
+    
+    req.user = tokenDB.user;
+     // Esto es usado para el logout
     req.token = tokenDB;
     next();
   } catch (err) {
