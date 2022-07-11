@@ -1,6 +1,7 @@
 import { Method } from 'src/types/methods';
 import Logger from 'src/helpers/logger';
 import auth from 'src/middlewares/auth';
+import tokenModel from '../models/token.model';
 
 const logger = Logger.create('backend:logout');
 
@@ -11,7 +12,7 @@ class LogOut {
 
   async on(): Promise<any> {
     logger.info('User logout.');
-    // TODO: se deberia borrar el token de la db
+    await tokenModel.deleteOne({ token: req.token.token });
     return {
       deleteJWT: true,
     };
