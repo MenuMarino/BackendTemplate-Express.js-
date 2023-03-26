@@ -6,7 +6,7 @@ import helmet from 'helmet';
 import createRoutes from './routes';
 import Logger from './helpers/logger';
 import { emitter } from './helpers/emitter';
-import createSubscribers from './suscribers';
+import createSubscribers from './subscribers';
 import cookieParser from 'cookie-parser';
 
 require('dotenv').config();
